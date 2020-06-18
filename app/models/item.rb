@@ -14,6 +14,6 @@ class Item
 
   # class methods
   def self.items_through_tags(title)
-    where(tag_id: Tag.tag_through_title(title))
+    Tag.tag_through_title(title)
   end
 end

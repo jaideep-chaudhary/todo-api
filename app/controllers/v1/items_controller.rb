@@ -1,7 +1,6 @@
 module V1
   class ItemsController < ApplicationController
     before_action :set_item, only: %i[show update destroy]
-    skip_before_action :verify_authenticity_token
 
     # GET /items
     def index
@@ -36,7 +35,6 @@ module V1
     # GET /get_items
     def get_items
       @items = Item.items_through_tags(params[:title])
-                   .page(params[:page])
     end
 
     private

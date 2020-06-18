@@ -11,6 +11,6 @@ class Tag
 
   # class methods
   def self.tag_through_title(title)
-    where(title: title).pluck(:_id) || []
+    where(title: title).map(&:items)
   end
 end
