@@ -11,6 +11,7 @@ class Tag
 
   # class methods
   def self.tag_through_title(title)
-    where(title: title).map(&:items)
+    tag = where(title: title).first
+    tag.items unless tag.to_a.blank?
   end
 end

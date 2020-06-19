@@ -31,7 +31,7 @@ module V1
 
     def tag_params
       # whitelist params
-      params.permit(:title)
+      params.permit(:title, :id)
     end
 
     def set_tag
