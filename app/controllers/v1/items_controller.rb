@@ -1,6 +1,7 @@
 module V1
   class ItemsController < ApplicationController
     before_action :set_item, only: %i[show update destroy]
+    before_action :filter_params, only: %i[update]
 
     # GET /items
     def index
@@ -26,7 +27,7 @@ module V1
       head :no_content
     end
 
-    # DELETE /items/:id
+    # Post /delete/items/:id
     def destroy
       @item.update(deleted: params[:deleted])
       head :no_content
@@ -41,11 +42,17 @@ module V1
 
     def item_params
       # whitelist params
-      params.permit(:id, :name, :status, :deleted, :tag_id)
+      params.permit(:id, :name, :status, :deleted, tag_ids: [])
     end
 
     def set_item
       @item = Item.find_by(_id: params[:id])
+    end
+
+    def filter_params
+      return unless params[:tag_ids].present?
+
+      params[:tag_ids] = params[:tag_ids].split(',')
     end
   end
 end

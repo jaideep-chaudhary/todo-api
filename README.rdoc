@@ -18,9 +18,9 @@ To start local development:
    ```
 ### API documentation
 
-For API documentation please follow below
+For API documentation please visit the below link
 
-`postman`
+`https://explore.postman.com/templates/9667/todo-api`
 
 ### Example usage
 

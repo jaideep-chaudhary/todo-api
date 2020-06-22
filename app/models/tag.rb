@@ -4,11 +4,9 @@ class Tag
   include Mongoid::Timestamps::Updated
   field :title, type: String
   # model association
-  has_many :items, dependent: :destroy
-
+  has_and_belongs_to_many :items
   # validations
   validates_presence_of :title
-
   # class methods
   def self.tag_through_title(title)
     tag = where(title: title).first
