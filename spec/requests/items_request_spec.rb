@@ -78,12 +78,12 @@ RSpec.describe 'Items', type: :request do
     end
   end
 
-  # Test suite for PUT /items/:id
-  describe 'PUT /items/:id' do
-    let(:valid_attributes) { { name: 'Shopping' } }
+  # Test suite for PATCH /items/:id
+  describe 'PATCH /items/:id' do
+    let(:valid_attributes) { { name: 'Shopping', tag_ids: '1,2' } }
 
     context 'when the record exists' do
-      before { put "/items/#{item_id}", params: valid_attributes }
+      before { patch "/items/#{item_id}", params: valid_attributes }
 
       it 'updates the record' do
         expect(response.body).to be_empty
@@ -95,11 +95,11 @@ RSpec.describe 'Items', type: :request do
     end
   end
 
-  # Test suite for DELETE /items/:id
-  describe 'DELETE /items/:id' do
+  # Test suite for POST /delete/items/:id
+  describe 'POST /delete/items/:id' do
     let(:delete_status) { { deleted: true } }
 
-    before { delete "/items/#{item_id}", delete_status }
+    before { post "/delete/items/#{item_id}", delete_status }
 
     it 'returns status code 204' do
       expect(response).to have_http_status(204)
