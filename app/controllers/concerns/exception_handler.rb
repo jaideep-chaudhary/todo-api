@@ -4,11 +4,11 @@ module ExceptionHandler
 
   included do
     rescue_from Mongoid::Errors::DocumentNotFound do |e|
-      json_response({ message: e.message }, :not_found)
+      json_response({error: [{message: 'Document not found'}]}, :not_found)
     end
 
     rescue_from Mongoid::Errors::InvalidFind do |e|
-      json_response({ message: e.message }, :unprocessable_entity)
+      json_response({error: [{message: 'Invalid find'}]}, :unprocessable_entity)
     end
   end
 end

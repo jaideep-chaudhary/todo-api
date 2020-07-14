@@ -22,6 +22,7 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
+gem 'mongoid-paranoia', '~> 2.0'
 gem 'oj'
 gem 'rabl'
 gem 'rack-cors'

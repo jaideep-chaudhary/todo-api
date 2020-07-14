@@ -2,29 +2,29 @@ module V1
   class TagsController < ApplicationController
     before_action :set_tag, only: %i[show update destroy]
 
-    # GET /tags
-    def index
+    # GET /get_tags
+    def get_tags
       @tags = Tag.all
     end
 
     # POST /tags
     def create
-      @tag = Tag.create!(tag_params)
-      render status: :created
-    rescue StandardError => e
-      json_response(e.message, 422)
+      @tag = Tag.new(tag_params)
+      if @tag.save
+        render status: :created
+      else
+        json_response(@tag.errors, 422)
+      end
     end
 
     # PATCH /tags/:tag_id
     def update
       @tag.update(tag_params)
-      head :no_content
     end
 
     # DELETE /tags/:id
     def destroy
       @tag.destroy
-      head :no_content
     end
 
     private

@@ -1,10 +1,13 @@
 require 'api_version'
 Rails.application.routes.draw do
   scope module: :v1, defaults: {format: 'json'}, constraints: ApiVersion.new('v1', true) do
-    resources :tags, except: %i[edit]
-    resources :items, except: %i[destroy edit]
+    resources :tags, except: %i[index edit]
+    resources :items, except: %i[index edit]
+    post 'get_items_through_tags', to: 'items#get_items_through_tags'
+    get 'deleted_items', to: 'items#deleted_items'
     get 'get_items', to: 'items#get_items'
-    post '/delete/items/:id', to: 'items#destroy'
+    get 'get_tags', to: 'tags#get_tags'
+    post '/undo_delete_item:id', to: 'items#undo_delete_item'
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
